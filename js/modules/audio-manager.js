@@ -259,7 +259,7 @@ export class AudioManager {
      */
     async startVoiceRecording() {
         try {
-            const stream = await navigator.mediaDevices.getUserMicrophone({
+            const stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
                     echoCancellation: true,
                     noiseSuppression: true,

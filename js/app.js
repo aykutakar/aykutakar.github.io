@@ -151,6 +151,7 @@ class AnimeGenerator {
     async initializeModules() {
         // Initialize notification system first
         this.notifications = new NotificationSystem();
+        this.notifications.initialize();
         
         // Initialize performance monitor
         this.performance = new PerformanceMonitor();
