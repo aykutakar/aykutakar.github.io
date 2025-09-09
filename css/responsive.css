@@ -1,0 +1,653 @@
+/* Responsive Design for Anime Dance Animation Generator */
+
+/* Tablet Landscape */
+@media (max-width: 1024px) {
+    .app-main {
+        grid-template-columns: 250px 1fr 250px;
+    }
+    
+    .left-panel, .right-panel {
+        font-size: 0.9rem;
+    }
+    
+    .panel-section {
+        padding: 1rem;
+    }
+    
+    .avatar-customization {
+        min-width: 700px;
+        grid-template-columns: 1fr 1.5fr;
+    }
+    
+    .text-editor {
+        min-width: 750px;
+        grid-template-columns: 1fr 250px;
+    }
+    
+    .export-options {
+        min-width: 500px;
+    }
+    
+    .format-selector {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Tablet Portrait */
+@media (max-width: 768px) {
+    .app-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.25rem;
+    }
+    
+    .main-nav {
+        gap: 0.5rem;
+    }
+    
+    .nav-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.875rem;
+    }
+    
+    .app-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+    
+    .left-panel, .right-panel {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--bg-secondary);
+        z-index: 1500;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .left-panel.active, .right-panel.active {
+        display: block;
+        transform: translateX(0);
+    }
+    
+    .right-panel {
+        transform: translateX(100%);
+    }
+    
+    .right-panel.active {
+        transform: translateX(0);
+    }
+    
+    .panel-section {
+        padding: 1.5rem;
+        margin-bottom: 0;
+    }
+    
+    .canvas-container {
+        grid-row: 2;
+    }
+    
+    #mainCanvas {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+    
+    .canvas-overlay {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        right: 0.5rem;
+        padding: 0.75rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .playback-controls {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .canvas-info {
+        text-align: center;
+    }
+    
+    /* Mobile Navigation */
+    .mobile-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-around;
+        padding: 0.75rem;
+        z-index: 1000;
+    }
+    
+    .mobile-nav-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+    
+    .mobile-nav-btn:hover, .mobile-nav-btn.active {
+        color: var(--primary-color);
+    }
+    
+    .mobile-nav-btn span {
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+    
+    /* Modal Adjustments */
+    .modal-content {
+        width: 95vw;
+        height: 95vh;
+        max-width: none;
+        max-height: none;
+    }
+    
+    .avatar-customization {
+        grid-template-columns: 1fr;
+        min-width: auto;
+        gap: 1rem;
+    }
+    
+    .avatar-preview {
+        height: 250px;
+    }
+    
+    .text-editor {
+        grid-template-columns: 1fr;
+        min-width: auto;
+        gap: 1rem;
+    }
+    
+    .text-preview {
+        height: 200px;
+    }
+    
+    .export-options {
+        min-width: auto;
+    }
+    
+    .format-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .quality-settings {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Timeline Mobile */
+    .timeline-container {
+        padding: 0.75rem;
+    }
+    
+    .timeline-track {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: auto;
+        gap: 0.5rem;
+    }
+    
+    .timeline-track label {
+        width: auto;
+        font-weight: 600;
+    }
+    
+    .track-content {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .timeline-controls {
+        justify-content: center;
+    }
+    
+    /* Camera Controls Mobile */
+    .camera-presets {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    /* Performance Monitor Mobile */
+    .performance-monitor {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile Phone */
+@media (max-width: 480px) {
+    .app-header {
+        padding: 0.5rem 0.75rem;
+    }
+    
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+    
+    .main-nav {
+        gap: 0.25rem;
+    }
+    
+    .nav-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .panel-section {
+        padding: 1rem;
+    }
+    
+    .panel-section h3 {
+        font-size: 1rem;
+    }
+    
+    .btn-primary, .btn-secondary, .btn-small {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.875rem;
+    }
+    
+    .control-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .control-row label {
+        min-width: auto;
+    }
+    
+    .control-row input[type="range"] {
+        width: 100%;
+    }
+    
+    .control-row .value-display {
+        align-self: center;
+        min-width: 60px;
+    }
+    
+    .color-picker-group {
+        grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    }
+    
+    .color-option {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .preset-avatars {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    }
+    
+    .preset-avatar {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .camera-presets {
+        grid-template-columns: 1fr;
+    }
+    
+    .preset-btn {
+        padding: 0.75rem;
+    }
+    
+    .canvas-overlay {
+        bottom: 0.25rem;
+        left: 0.25rem;
+        right: 0.25rem;
+        padding: 0.5rem;
+    }
+    
+    .playback-controls {
+        gap: 0.25rem;
+    }
+    
+    .control-btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+    
+    #timeDisplay {
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .mobile-nav {
+        padding: 0.5rem;
+    }
+    
+    .mobile-nav-btn {
+        font-size: 1.25rem;
+        padding: 0.4rem;
+    }
+    
+    .mobile-nav-btn span {
+        font-size: 0.65rem;
+    }
+    
+    /* Modal Adjustments for Small Screens */
+    .modal-content {
+        width: 98vw;
+        height: 98vh;
+        border-radius: 4px;
+    }
+    
+    .modal-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .avatar-preview {
+        height: 200px;
+    }
+    
+    .text-preview {
+        height: 150px;
+    }
+    
+    .text-input {
+        min-height: 80px;
+        padding: 0.5rem;
+    }
+    
+    .font-selector {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .font-option {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+    
+    .animation-path-selector {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+    
+    .path-option {
+        width: 60px;
+        height: 45px;
+    }
+    
+    /* Notification Mobile */
+    .notification {
+        top: 60px;
+        right: 0.5rem;
+        left: 0.5rem;
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .notification-header {
+        margin-bottom: 0.25rem;
+    }
+    
+    .notification-title {
+        font-size: 0.9rem;
+    }
+    
+    .notification-body {
+        font-size: 0.8rem;
+    }
+    
+    /* File Upload Mobile */
+    .file-upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .upload-icon {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .upload-text {
+        font-size: 1rem;
+    }
+    
+    .upload-subtext {
+        font-size: 0.8rem;
+    }
+    
+    /* Accordion Mobile */
+    .accordion-header {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .accordion-body {
+        padding: 1rem;
+    }
+    
+    /* Tabs Mobile */
+    .tab-headers {
+        flex-wrap: wrap;
+    }
+    
+    .tab-header {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        min-width: 0;
+        flex: 1;
+    }
+    
+    .tab-header:last-child {
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .tab-header.active {
+        border-bottom: 2px solid var(--secondary-color);
+    }
+    
+    .tab-content {
+        padding: 1rem;
+    }
+}
+
+/* Extra Small Screens */
+@media (max-width: 320px) {
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .nav-btn {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .panel-section {
+        padding: 0.75rem;
+    }
+    
+    .btn-primary, .btn-secondary, .btn-small {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .color-picker-group {
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+    }
+    
+    .color-option {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .preset-avatars {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+    
+    .preset-avatar {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .mobile-nav-btn {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+    }
+    
+    .mobile-nav-btn span {
+        font-size: 0.6rem;
+    }
+    
+    .canvas-overlay {
+        padding: 0.4rem;
+    }
+    
+    .control-btn {
+        padding: 0.3rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape Orientation for Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .app-header {
+        padding: 0.4rem 0.75rem;
+    }
+    
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .nav-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .canvas-overlay {
+        bottom: 0.25rem;
+        padding: 0.4rem;
+    }
+    
+    .mobile-nav {
+        padding: 0.4rem;
+    }
+    
+    .mobile-nav-btn {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+    }
+    
+    .mobile-nav-btn span {
+        display: none;
+    }
+    
+    .modal-content {
+        height: 95vh;
+    }
+    
+    .avatar-preview, .text-preview {
+        height: 150px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #mainCanvas {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .loading-spinner {
+        border-width: 2px;
+    }
+    
+    .color-option {
+        border-width: 2px;
+    }
+    
+    .preset-avatar, .format-option, .path-option {
+        border-width: 1px;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .loading-spinner {
+        animation: none;
+        border-top-color: var(--primary-color);
+    }
+    
+    .fade-in, .slide-in {
+        animation: none;
+    }
+    
+    .notification {
+        animation: none;
+        transform: translateX(0);
+    }
+}
+
+/* Dark Mode Support (if system preference) */
+@media (prefers-color-scheme: dark) {
+    /* Already using dark theme by default */
+}
+
+/* Light Mode Support (optional - can be toggled) */
+@media (prefers-color-scheme: light) {
+    .light-theme {
+        --primary-color: #e91e63;
+        --secondary-color: #00bcd4;
+        --accent-color: #2196f3;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f5f5f5;
+        --bg-tertiary: #e0e0e0;
+        --text-primary: #212121;
+        --text-secondary: #757575;
+        --border-color: #e0e0e0;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .app-header, .left-panel, .right-panel, .mobile-nav, .canvas-overlay {
+        display: none !important;
+    }
+    
+    .app-main {
+        grid-template-columns: 1fr;
+    }
+    
+    .canvas-container {
+        background: white;
+    }
+    
+    #mainCanvas {
+        border: 1px solid #000;
+        border-radius: 0;
+    }
+}

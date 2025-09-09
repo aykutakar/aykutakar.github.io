@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Dance Animation Generator</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/ui.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <h1>🎭 Anime Dance Generator</h1>
+            </div>
+            <nav class="main-nav">
+                <button id="newProject" class="nav-btn">New</button>
+                <button id="loadProject" class="nav-btn">Load</button>
+                <button id="saveProject" class="nav-btn">Save</button>
+                <button id="exportVideo" class="nav-btn primary">Export</button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Left Panel - Controls -->
+            <aside class="left-panel">
+                <div class="panel-section">
+                    <h3>🎵 Audio</h3>
+                    <div class="audio-controls">
+                        <input type="file" id="audioUpload" accept="audio/*" hidden>
+                        <button id="loadAudio" class="btn-secondary">Load Music</button>
+                        <button id="recordVoice" class="btn-secondary">Record Voice</button>
+                        <div class="audio-info" id="audioInfo"></div>
+                        <div class="volume-control">
+                            <label>Volume:</label>
+                            <input type="range" id="volumeControl" min="0" max="100" value="70">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>👤 Avatar</h3>
+                    <div class="avatar-controls">
+                        <button id="customizeAvatar" class="btn-secondary">Customize</button>
+                        <button id="loadAvatar" class="btn-secondary">Load Avatar</button>
+                        <button id="saveAvatar" class="btn-secondary">Save Avatar</button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>💃 Dance Style</h3>
+                    <div class="dance-controls">
+                        <select id="danceStyle">
+                            <option value="freestyle">Freestyle</option>
+                            <option value="hiphop">Hip Hop</option>
+                            <option value="kpop">K-Pop</option>
+                            <option value="ballet">Ballet</option>
+                            <option value="breakdance">Breakdance</option>
+                            <option value="contemporary">Contemporary</option>
+                        </select>
+                        <button id="generateChoreography" class="btn-primary">Generate AI Dance</button>
+                        <div class="dance-intensity">
+                            <label>Intensity:</label>
+                            <input type="range" id="danceIntensity" min="1" max="10" value="5">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>🎨 Background</h3>
+                    <div class="background-controls">
+                        <input type="file" id="backgroundUpload" accept="image/*,video/*" hidden>
+                        <button id="loadBackground" class="btn-secondary">Upload Background</button>
+                        <select id="presetBackground">
+                            <option value="stage1">Concert Stage</option>
+                            <option value="stage2">Club Scene</option>
+                            <option value="stage3">Outdoor Festival</option>
+                            <option value="studio">Dance Studio</option>
+                            <option value="cyberpunk">Cyberpunk City</option>
+                        </select>
+                        <button id="animatedBackground" class="btn-secondary">Animated BG</button>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>✨ Effects</h3>
+                    <div class="effects-controls">
+                        <button id="addText" class="btn-secondary">Add Text</button>
+                        <button id="addStickers" class="btn-secondary">Stickers</button>
+                        <button id="particles" class="btn-secondary">Particles</button>
+                        <button id="lighting" class="btn-secondary">Lighting</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center - 3D Canvas -->
+            <section class="canvas-container">
+                <canvas id="mainCanvas" width="800" height="600"></canvas>
+                <div class="canvas-overlay">
+                    <div class="playback-controls">
+                        <button id="playBtn" class="control-btn">▶️</button>
+                        <button id="pauseBtn" class="control-btn">⏸️</button>
+                        <button id="stopBtn" class="control-btn">⏹️</button>
+                        <span id="timeDisplay">00:00 / 00:00</span>
+                    </div>
+                    <div class="canvas-info" id="canvasInfo">
+                        Ready to create amazing dance animations!
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel - Timeline & Advanced Controls -->
+            <aside class="right-panel">
+                <div class="panel-section">
+                    <h3>🎬 Timeline</h3>
+                    <div class="timeline-container">
+                        <div class="timeline" id="timeline">
+                            <!-- Timeline tracks will be dynamically generated -->
+                            <div class="timeline-track" data-track="music">
+                                <label>Music</label>
+                                <div class="track-content"></div>
+                            </div>
+                            <div class="timeline-track" data-track="dance">
+                                <label>Dance</label>
+                                <div class="track-content"></div>
+                            </div>
+                            <div class="timeline-track" data-track="effects">
+                                <label>Effects</label>
+                                <div class="track-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-controls">
+                        <button id="addKeyframe" class="btn-small">Add Keyframe</button>
+                        <button id="deleteKeyframe" class="btn-small">Delete</button>
+                        <input type="range" id="timelineSeeker" min="0" max="100" value="0" class="timeline-seeker">
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>🎥 Camera</h3>
+                    <div class="camera-controls">
+                        <div class="camera-presets">
+                            <button class="preset-btn" data-preset="front">Front</button>
+                            <button class="preset-btn" data-preset="side">Side</button>
+                            <button class="preset-btn" data-preset="top">Top</button>
+                            <button class="preset-btn" data-preset="diagonal">Diagonal</button>
+                        </div>
+                        <div class="camera-manual">
+                            <label>Zoom:</label>
+                            <input type="range" id="cameraZoom" min="0.5" max="3" step="0.1" value="1">
+                            <label>Rotation:</label>
+                            <input type="range" id="cameraRotation" min="0" max="360" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <h3>📊 Performance</h3>
+                    <div class="performance-monitor">
+                        <div class="fps-counter">FPS: <span id="fpsCounter">60</span></div>
+                        <div class="memory-usage">Memory: <span id="memoryUsage">0 MB</span></div>
+                        <div class="render-info">
+                            <small>WebGL2: <span id="webglStatus">✅</span></small>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Modals -->
+        <div id="avatarCustomizationModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Avatar Customization</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Avatar customization interface will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="textEditorModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Text Editor</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Text editing interface will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <div id="exportModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Export Video</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <!-- Export options will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Loading AI Models...</div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
